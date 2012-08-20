@@ -1,14 +1,13 @@
 package component;
 
 public class Head extends BodyPart {
-
 	
-	public Head(int partLevel)
+	public Head(int totalPartsInGame, int partLevel, boolean isThisPartOfRobot)
 	{
 		thisPartName = "Head";
+		this.thisPartID = totalPartsInGame++;
 		this.thisPartLevel = partLevel;
-		this.incrementMasterID();
-		this.isPartOfRobot = true;
+		this.isPartOfRobot = isThisPartOfRobot;
 	}
 
 }

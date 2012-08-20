@@ -32,17 +32,10 @@ public class Robot {
 	public boolean debugThisRobot;
 	//public boolean isThisGameOverthrowingTheEarth; --- We don't need to worry about this ;) - Ben
 
-	public Robot(boolean debugTrue)
+	public Robot(int partsInGame, boolean debugTrue)
 	{
 		this.thisRobot = new ArrayList<BodyPart>();
-		
-		thisRobot.add(this.head = new Head(1));
-		thisRobot.add(this.torso = new Torso(1, true));
-		thisRobot.add(this.leftArm = new Arm(1, false));
-		thisRobot.add(this.rightArm = new Arm(1, true));
-		thisRobot.add(this.leftLeg = new Leg(1, false));
-		thisRobot.add(this.rightLeg = new Leg(1, true));
-		
+
 		this.robotAge = 0;
 		this.robotPower = 100;
 		this.robotOil = 100;
@@ -57,6 +50,8 @@ public class Robot {
 			this.printStatus();
 			this.listParts();
 		}
+		
+		this.assignParts(partsInGame);
 	}
 	
 	public void Update()
@@ -70,6 +65,18 @@ public class Robot {
 		System.out.println("This robot has " + this.robotOil + " oil points!");
 		System.out.println("This robot has " + this.robotUptime + " uptime points out of " + this.maxRobotUptime + "!");
 		System.out.println("This robot has " + this.robotStrength + " strength points!");
+	}
+	
+	public int assignParts(int partsInGame)
+	{
+		thisRobot.add(this.head = new Head(partsInGame, 1, false));
+		thisRobot.add(this.torso = new Torso(partsInGame, 1, true));
+		thisRobot.add(this.leftArm = new Arm(partsInGame, 1, false, false));
+		thisRobot.add(this.rightArm = new Arm(partsInGame, 1, false, true));
+		thisRobot.add(this.leftLeg = new Leg(partsInGame, 1, false, false));
+		thisRobot.add(this.rightLeg = new Leg(partsInGame, 1, false, true));
+		
+		return partsInGame;
 	}
 	
 	public void listParts()
